@@ -2,7 +2,7 @@
 // get a string back, and add it to the innerHTML of the columns
 function createCard(name, description, pictureUrl, starts, ends, location) {
     return `
-        <div class="card-group">
+        <div class="column">
             <div class="card shadow-lg">
                 <img src="${pictureUrl}" class="card-img-top">
                 <div class="card-body">
@@ -35,6 +35,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         } else {
             const data = await response.json();
 
+            // we're going to iterate through each card 
+            // column, start by setting i to 0
+            let i = 0;
+
             for (let conference of data.conferences) {
                 const detailUrl = `http://localhost:8000${conference.href}`;
                 const detailResponse = await fetch(detailUrl);
@@ -47,9 +51,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const starts = new Date(details.conference.starts).toLocaleDateString();
                     const ends = new Date(details.conference.ends).toLocaleDateString();
                     const location = details.conference.location.name;
+                    // create the card
                     const html = createCard(name, description, pictureUrl, starts, ends, location);
-                    const column = document.querySelector('.col');
+                    // selecting the column to place the card from 
+                    // index.html either col-0, col-1, col-2
+                    const column = document.querySelector(`#col-${i % 3}`);
                     column.innerHTML += html;
+                    // increment the column counter by 1 each time
+                    i++;
                 }
             }
         }
