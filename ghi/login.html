@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>New Conference :: Conference GO!</title>
-    <script type="module" src="js/new-conference.js"></script>
+    <title>Login :: Conference GO!</title>
+    <script type="module" src="js/login.js"></script>
 </head>
 
 <body>
@@ -24,13 +24,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-none" aria-current="page" href="new-location.html">New location</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-none" aria-current="page" href="new-conference.html">New conference</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="new-presentation.html">New presentation</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -48,56 +51,28 @@
             <div class="row">
                 <div class="offset-3 col-6">
                     <div class="shadow p-4 mt-4">
-                        <h1>Create a new conference</h1>
-                        <form id="create-conference-form">
+                        <h1>Login</h1>
+                        <form id="login-form">
                             <div class="form-floating mb-3">
-                                <input placeholder="Name" required type="text" name="name" id="name"
+                                <input placeholder="Username" required type="text" name="username" id="username"
                                     class="form-control">
-                                <label for="name">Name</label>
+                                <label for="username">Username</label>
                             </div>
-
                             <div class="form-floating mb-3">
-                                <input placeholder="Starts" required type="date" name="starts" id="starts"
+                                <input placeholder="Password" required type="password" name="password" id="password"
                                     class="form-control">
-                                <label for="starts">Starts</label>
+                                <label for="password">Password</label>
                             </div>
-
-                            <div class="form-floating mb-3">
-                                <input placeholder="Ends" required type="date" name="ends" id="ends"
-                                    class="form-control">
-                                <label for="ends">Ends</label>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input placeholder="Maximum presentations" required type="number"
-                                    name="max_presentations" id="max_presentations" class="form-control">
-                                <label for="max_presentations">Maximum presentations</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input placeholder="Maximum attendees" required type="number" name="max_attendees"
-                                    id="max_attendees" class="form-control">
-                                <label for="max_attendees">Maximum attendees</label>
-                            </div>
-
-                            <div class="mb-3">
-                                <select required id="location" name="location" class="form-select">
-                                    <option selected value="">Choose a location</option>
-                                </select>
-                            </div>
-
-                            <button class="btn btn-primary">Create</button>
+                            <button class="btn btn-primary">Login</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
