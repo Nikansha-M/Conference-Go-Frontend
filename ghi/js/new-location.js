@@ -48,7 +48,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         },
       };
 
-
       const response = await fetch(locationUrl, fetchConfig);
       if (response.ok) {
         formTag.reset();
