@@ -5,9 +5,11 @@ class AttendConferenceForm extends React.Component {
         super(props);
         // this.state will always be this.state -- state is referring to the component
         this.state = {
+            conference: '',
             name: '',
             email: '',
-            conferences: []
+            conferences: [],
+            hasSignedUp: false,
         };
 
         this.handleConferenceChange = this.handleConferenceChange.bind(this);
@@ -35,17 +37,18 @@ class AttendConferenceForm extends React.Component {
         event.preventDefault();
         const data = { ...this.state }; // leave this.state as is 
         delete data.conferences;
+        delete data.hasSignedUp;
         console.log(data);
 
         const attendeesUrl = 'http://localhost:8001/api/attendees/';
-        const fetchConfig = {
+        const fetchOptions = {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             },
         };
-        const response = await fetch(attendeesUrl, fetchConfig);
+        const response = await fetch(attendeesUrl, fetchOptions);
         if (response.ok) {
             const newAttendee = await response.json();
             console.log(newAttendee);
@@ -54,6 +57,7 @@ class AttendConferenceForm extends React.Component {
                 conference: '',
                 name: '',
                 email: '',
+                hasSignedUp: true,
             };
             this.setState(cleared);
         }
@@ -84,8 +88,15 @@ class AttendConferenceForm extends React.Component {
             dropdownClasses = 'form-select'
         }
 
+        let messageClasses = 'alert alert-success d-none mb-0';
+        let formClasses = '';
+        if (this.state.hasSignedUp) {
+            messageClasses = 'alert alert-success mb-0';
+            formClasses = 'd-none';
+        }
+
         return (
-            <div className="my-5">
+            <div className="my-5 container">
                 <div className="row">
                     <div className="col col-sm-auto">
                         <img width="300" className="bg-white rounded shadow d-block mx-auto mb-4" src="/logo.svg" />
@@ -94,7 +105,7 @@ class AttendConferenceForm extends React.Component {
                     <div className="col">
                         <div className="card shadow">
                             <div className="card-body">
-                                <form id="create-attendee-form">
+                                <form onSubmit={this.handleSubmit} id="create-attendee-form">
                                     <h1 className="card-title">It's Conference Time!</h1>
                                     <p className="mb-3">
                                         Please choose which conference
@@ -107,6 +118,7 @@ class AttendConferenceForm extends React.Component {
                                     </div>
 
                                     <div className="mb-3">
+                                    {/* className={dropdownClasses} creates a dropdown list for user to select conference to register for */}
                                         <select value={this.state.conference} onChange={this.handleConferenceChange} name="conference" id="conference" className={dropdownClasses} required>
                                             <option value="">Choose a conference</option>
                                             {this.state.conferences.map(conference => {
@@ -142,7 +154,7 @@ class AttendConferenceForm extends React.Component {
                                     </div>
                                     <button className="btn btn-lg btn-primary">I'm going!</button>
                                 </form>
-                                <div className="alert alert-success d-none mb-0" id="success-message">
+                                <div className={messageClasses} id="success-message">
                                     Congratulations! You're all signed up!
                                 </div>
                             </div>

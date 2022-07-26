@@ -95,17 +95,21 @@ class LocationForm extends React.Component {
                         <h1>Create a new location</h1>
                         <form onSubmit={this.handleSubmit} id="create-location-form">
                             <div className="form-floating mb-3">
+
                                 <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" value={this.state.name} />
                                 <label htmlFor="name">Name</label>
                             </div>
+
                             <div className="form-floating mb-3">
                                 <input onChange={this.handleRoomCountChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" value={this.state.roomCount} />
                                 <label htmlFor="room_count">Room count</label>
                             </div>
+
                             <div className="form-floating mb-3">
                                 <input onChange={this.handleCityChange} placeholder="City" required type="text" name="city" id="city" className="form-control" value={this.state.city} />
                                 <label htmlFor="city">City</label>
                             </div>
+                            
                             <div className="mb-3">
                                 <select onChange={this.handleStateChange} required name="state" id="state" className="form-select" value={this.state.state}>
                                     <option value="">Choose a state</option>
