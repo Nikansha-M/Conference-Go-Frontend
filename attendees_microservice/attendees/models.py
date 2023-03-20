@@ -10,6 +10,7 @@ class AccountVO(models.Model):
     updated = models.DateTimeField()
 
 
+# there is a conference model in monolith/events/models.py
 class ConferenceVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
